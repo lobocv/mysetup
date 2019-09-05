@@ -25,3 +25,23 @@ function textreplace() {
 	done
 
 }
+
+# Select a specific line from input stream
+# $1: Line number to select
+# Example:  cat /etc/group | linesel 2
+function linesel() {
+	LINE=$1
+	if [ -z "$1" ]; then
+		return
+	fi
+	ln=1
+	while read TEXT;
+	do
+		if [[ $ln = $LINE ]]; then
+			echo $TEXT
+			return
+		fi
+		ln=$((ln+1))
+	done
+
+}

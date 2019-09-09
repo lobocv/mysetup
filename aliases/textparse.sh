@@ -45,3 +45,12 @@ function linesel() {
 	done
 
 }
+
+# Reads from JSON from stdin and print outs the value of the specified key
+# $1: Key to print
+# Example: echo '{"a": 1, "b": 2}' | jsonparsekey b
+# > 2
+function jsonparsekey() {
+	KEY=$1
+	python -c "import sys,json; s=json.loads(''.join([l for l in sys.stdin])); print s['$KEY']"
+}

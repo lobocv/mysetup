@@ -13,7 +13,7 @@ function _confirm_yesno() {
 
 function findcontainer() {
 	if [[ -z "$1" ]]; then
-		containers=( `docker ps --format "{{.Names}}"` )
+		containers=( `docker ps --format "{{.Names}}" | sort`)
 	else
 		containers=( `docker ps --format "{{.Names}}" | grep $1` )
 	fi
@@ -103,9 +103,9 @@ function dockerkill() {
 function cnames() {
 	case "$1" in
 	     [-v][--verbose])
-		docker ps --format '{{.Names}}\t{{.RunningFor}}';;
+		docker ps --format '{{.Names}}\t{{.RunningFor}}' | sort;;
 	*)
-		docker ps --format '{{.Names}}';;
+		docker ps --format '{{.Names}}' | sort;;
 	esac	
 }
 

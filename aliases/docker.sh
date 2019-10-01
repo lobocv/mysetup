@@ -251,3 +251,14 @@ function dockerrun() {
 	docker run --rm -it --entrypoint ${2:-bash} "$image"
 }
 
+# Print the health of docker containers
+function dockerhealth() {
+        case "$1" in
+             [-a][--all])
+                ALL=-a;;
+        *)
+                ;;
+        esac
+        docker ps $ALL --format "{{.Names}}, {{.Status}}" | tabulate -s "," | cGreen "\s.*\(healthy\)" | cLightRed "\s.*\(unhealthy\)" | cPink "\s.*Exited .*" 
+}
+

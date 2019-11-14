@@ -12,14 +12,29 @@ function _confirm_yesno() {
 }
 
 function findcontainer() {
-	if [[ -z "$1" ]]; then
-		containers=( `docker ps --format "{{.Names}}" | sort`)
+	local POSITIONAL=()
+        local ALL=""
+        for i in "$@"; do
+                case "$i" in
+                -a|--all)
+                        ALL="-a"
+                        shift
+                        ;;
+                *)
+			POSITIONAL+=("$1") # save it in an array for later
+			shift # past argument
+                esac
+        done
+	set -- "${POSITIONAL[@]}"
+	local SEARCH=$1
+	if [[ -z "${SEARCH}" ]]; then
+		containers=( `docker ps ${ALL} --format "{{.Names}}" | sort`)
 	else
-		containers=( `docker ps --format "{{.Names}}" | grep $1` )
+		containers=( `docker ps ${ALL} --format "{{.Names}}" | grep ${SEARCH}` )
 	fi
 	num=${#containers}
 	if [[ $num -gt 1 ]]; then
-		echo "More than one live container found for grep \"$1\". Choose a container from below:"
+		echo "More than one live container found for grep \"${SEARCH}\". Choose a container from below:"
 		lc=1
 		for x in $containers; 
 		do 
@@ -87,7 +102,7 @@ function dockerfollow() {
 # $1: Container name to grep for
 # $2: Output file path
 function dockerlog() {
-	findcontainer "$1"
+	findcontainer "$@"
 	docker logs "$container"
 }
 
@@ -129,7 +144,7 @@ function vnames() {
 # Get the info of a running docker container.
 # $1: Container name to grep for
 function dockerinspect() {
-	findcontainer "$1"
+	findcontainer "$@"
 	docker inspect "$container"
 }
 

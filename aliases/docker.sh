@@ -253,6 +253,7 @@ function dockerrun() {
 
 # Print the health of docker containers
 function dockerhealth() {
+	local ALL
         case "$1" in
              [-a][--all])
                 ALL=-a;;

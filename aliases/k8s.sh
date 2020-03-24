@@ -1,5 +1,3 @@
-alias kpods="kubectl get pods"
-alias kdeps="kubectl get deployments"
 
 function finddeployment() {
   local deployments
@@ -22,6 +20,30 @@ function finddeployment() {
 		deployment=$deployments[$(($c))]
 	else
 		deployment=$deployments[1]
+	fi
+}
+
+# List the Kubernetes deployments
+# $1: deployment regex
+# $2: Number of replicas
+function kdeps() {
+	local SEARCH=$1
+  if [[ -z "${SEARCH}" ]]; then
+		kubectl get deployments| sort
+	else
+		kubectl get deployments | grep ${SEARCH}
+	fi
+}
+
+# List the Kubernetes deployments
+# $1: deployment regex
+# $2: Number of replicas
+function kpods() {
+	local SEARCH=$1
+  if [[ -z "${SEARCH}" ]]; then
+		kubectl get pods| sort
+	else
+		kubectl get pods | grep ${SEARCH}
 	fi
 }
 

@@ -88,7 +88,7 @@ function findvolume() {
 # $2: Shell to use (default: bash)
 function dockerssh() {
 	findcontainer "$1"
-	docker exec -it "$container" ${2:-bash}
+	docker exec -it -e "TERM=xterm-256color" "$container" ${2:-bash}
 }
 
 # Follow logs of a running docker container.
@@ -263,7 +263,7 @@ function inames() {
 # $2: Command to run (Default: bash)
 function dockerrun() {
 	findimage "$1"
-	docker run --rm -it --entrypoint ${2:-bash} "$image"
+	docker run --rm -it -e "TERM=xterm-256color" --entrypoint ${2:-bash} "$image"
 }
 
 # Print the health of docker containers

@@ -13,6 +13,9 @@ alias newbranch="git checkout -b"
 # $1: Name of branch or filter
 function gc() {
 	local BRANCHES BRANCH="$1"
+	if [[ -z "$BRANCH" ]]; then
+		git checkout -
+	fi  
 	BRANCHES=(`git branch --list | grep $BRANCH`)
 	if [[ ${#BRANCHES} -gt 1 ]]; then
 		echo "More than one branch is found for grep \"$BRANCH\". Choose a branch:"

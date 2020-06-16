@@ -82,3 +82,18 @@ function gitlastmod() {
 	done
 }
 
+# Git push to origin <current branch>
+function gp() {
+	local BRANCH FORCE
+	if [[ "$1" = "-f" ]]; then 
+		FORCE=-f
+	fi
+	BRANCH=$(git rev-parse --abbrev-ref HEAD)
+	git push origin $BRANCH $FORCE
+}
+
+# Git rebase --continue
+function grc() {
+	git rebase --continue
+}
+

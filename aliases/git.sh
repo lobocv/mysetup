@@ -82,6 +82,12 @@ function gitlastmod() {
 	done
 }
 
+# Shows the most recently edited branches
+# https://stackoverflow.com/questions/5188320/how-can-i-get-a-list-of-git-branches-ordered-by-most-recent-commit
+func recentbranches() {
+	git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))' | tail -r -n 5
+}
+
 # Git push to origin <current branch>
 function gp() {
 	local BRANCH FORCE

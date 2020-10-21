@@ -6,8 +6,8 @@ alias gs="git status"
 alias gc="git checkout"
 alias gitch="git checkout"
 alias gb="git branch --sort=-committerdate"
-
-alias newbranch="git checkout -b"
+alias g-="git checkout -"
+alias nb="git checkout -b"
 
 # Checkout a local git branch
 # $1: Name of branch or filter

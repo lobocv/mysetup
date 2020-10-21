@@ -21,8 +21,8 @@ function findcontainer() {
                         shift
                         ;;
                 *)
-			POSITIONAL+=("$1") # save it in an array for later
-			shift # past argument
+                    POSITIONAL+=("$1") # save it in an array for later
+                    shift # past argument
                 esac
         done
 	set -- "${POSITIONAL[@]}"

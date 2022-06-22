@@ -11,20 +11,30 @@ function gocover() {
 }
 
 function gotest() {
-	SUITE="$1"
-	shift;
+	#SUITE="$1"
+	#if [[ -z "$SUITE" ]]; then
+	#	shift 1;
+	#fi
+	local SUITE=""
 	local NOCACHE=""
+	local VERBOSE=""
 	for i in "$@"; do
 		case "$i" in
 		-n|--no-cache)
 			NOCACHE="-count=1"
 			shift
 			;;
+		-v|--verbose)
+			VERBOSE=-v
+			shift
+			;;
 		*)
-			
+			SUITE="-run=$i"
+			shift
+			;;
 		esac
 	done
-	go test -run Test$SUITE $NOCACHE $@ | cGreen "--- PASS:" | cRed "--- FAIL:" | cBold "--- PASS:" | cBold "--- FAIL:" | removeline "=== (RUN\|CONT\|PAUSE).*"
+	go test $SUITE $NOCACHE $VERBOSE $@ | cGreen "--- PASS:" | cRed "--- FAIL:" | cBold "--- PASS:" | cBold "--- FAIL:" | removeline "=== (RUN\|CONT\|PAUSE).*"
 	if [[ "$?" == "0" ]]; then
 		echo "All tests passed" | cGreen ".*" | cBold ".*"
 	else

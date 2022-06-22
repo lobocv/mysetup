@@ -17,15 +17,15 @@ function gotest() {
 	#fi
 	local SUITE=""
 	local NOCACHE=""
-	local VERBOSE=""
+	local VERBOSE="-v"
 	for i in "$@"; do
 		case "$i" in
 		-n|--no-cache)
 			NOCACHE="-count=1"
 			shift
 			;;
-		-v|--verbose)
-			VERBOSE=-v
+		-q|--quite)
+			VERBOSE=""
 			shift
 			;;
 		*)

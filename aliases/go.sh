@@ -1,5 +1,7 @@
 #!/bin/bash
 
+alias testify="go test -testify.m"
+
 # Run tests with coverage and create a colorized report
 function gocover() {
     local t=$(mktemp -t coverXXXX)

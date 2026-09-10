@@ -24,6 +24,15 @@ trust_level = "trusted"
 [projects."/Users/calvinlobo/Documents/Codex/2026-09-07/what"]
 trust_level = "trusted"
 
+[projects."/Users/calvinlobo/lobocv/tether"]
+trust_level = "trusted"
+
+[projects."/Users/calvinlobo/lobocv/tether2"]
+trust_level = "trusted"
+
+[projects."/Users/calvinlobo/lobocv/tether3"]
+trust_level = "trusted"
+
 [marketplaces.openai-bundled]
 source_type = "local"
 source = "/Users/calvinlobo/.codex/.tmp/bundled-marketplaces/openai-bundled"
@@ -142,13 +151,6 @@ url = "https://mcp.notion.com/mcp"
 
 [mcp_servers.trellis]
 url = "http://127.0.0.1:5123/mcp"
-
-[mcp_servers.tether]
-command = "./devops/local/scripts/experimental/tether/src/bin/tether"
-args = [
-    "serve",
-    "--dir=/Users/calvinlobo/snowball-2/services/equity_backend",
-]
 
 [desktop]
 external-agent-import-sync-enabled = true

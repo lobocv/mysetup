@@ -13,9 +13,6 @@ alias cc="claude"
 alias python="python3"
 # Use bat (syntax-highlighted, paged) in place of less for viewing files.
 alias less="bat"
-# Plain bat: syntax highlighting but no line numbers/grid/header, so selected
-# text copies cleanly. Use `batp` when you want to copy lines out.
-alias batp="bat --style=plain"
 alias gm="git checkout master && git pull"
 alias gmm="git fetch origin && git merge origin/master"
 alias snowball="cd /Users/calvinlobo/snowball/"
@@ -81,3 +78,15 @@ _fzf_or_passthrough() {
 # exactly as normal.
 vi()  { _fzf_or_passthrough vim "$@"; }
 bat() { _fzf_or_passthrough bat "$@"; }
+
+# batp: plain bat (no line numbers/grid/header) so selected text copies cleanly.
+# Bare `batp` opens the fzf picker; a file or piped input passes straight through.
+batp() {
+	if [ $# -eq 0 ] && [ -t 0 ]; then
+		local file
+		file=$(fzf) || return
+		command bat --style=plain "$file"
+	else
+		command bat --style=plain "$@"
+	fi
+}

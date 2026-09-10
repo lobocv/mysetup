@@ -113,4 +113,4 @@ mode = "dismissed"
 play_notification_sound = true
 
 [general]
-show_warning_before_quitting = false
+show_warning_before_quitting = true

@@ -1,6 +1,8 @@
 tap "infisical/get-cli"
 # GitHub command-line tool
 brew "gh"
+# Syntax-highlighting pager for git and diff output
+brew "git-delta"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Modern, maintained replacement for ls
@@ -23,6 +25,10 @@ brew "grc"
 brew "just"
 # The lazier way to manage everything docker
 brew "lazydocker"
+# Simple terminal UI for git commands
+brew "lazygit"
+# Shell extension to navigate your filesystem faster
+brew "zoxide"
 # Open-source, cross-platform JavaScript runtime environment
 brew "node"
 # Execute binaries from Python packages in isolated environments

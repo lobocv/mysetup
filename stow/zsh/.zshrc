@@ -39,3 +39,8 @@ export PATH="/opt/homebrew/bin:$PATH"
 
 # grc: colorize the output of common commands (df, du, ping, ps, netstat, ...).
 [ -f /opt/homebrew/etc/grc.zsh ] && source /opt/homebrew/etc/grc.zsh
+
+# zoxide: a smarter cd that learns your most-used directories. --cmd cd makes
+# `cd` a superset (normal paths work as always; a bare keyword jumps to the
+# best remembered match). `cdi` is the interactive picker.
+command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init zsh --cmd cd)"

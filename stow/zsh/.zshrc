@@ -59,15 +59,22 @@ if command -v fzf >/dev/null 2>&1; then
 	eval "$(fzf --zsh)"
 fi
 
-# Run an editor on an fzf-picked file when called with no arguments; pass
-# arguments straight through otherwise. So bare `vi` opens the picker, while
-# `vi file.txt` behaves exactly as normal.
-vi() {
-	if [ $# -eq 0 ]; then
+# Run a command on an fzf-picked file when it is called at the prompt with no
+# arguments; otherwise (arguments given, or input piped in) pass everything
+# through untouched. The `-t 0` check keeps piping intact, eg `cmd | bat`.
+_fzf_or_passthrough() {
+	local cmd="$1"
+	shift
+	if [ $# -eq 0 ] && [ -t 0 ]; then
 		local file
 		file=$(fzf) || return
-		command vim "$file"
+		command "$cmd" "$file"
 	else
-		command vim "$@"
+		command "$cmd" "$@"
 	fi
 }
+
+# Bare `vi` / `bat` open the fzf picker; with a file or piped input they behave
+# exactly as normal.
+vi()  { _fzf_or_passthrough vim "$@"; }
+bat() { _fzf_or_passthrough bat "$@"; }

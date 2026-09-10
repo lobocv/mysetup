@@ -75,8 +75,9 @@ _fzf_or_passthrough() {
 }
 
 # Bare `vi` / `bat` open the fzf picker; with a file or piped input they behave
-# exactly as normal.
-vi()  { _fzf_or_passthrough vim "$@"; }
+# exactly as normal. `vi` opens micro (a modeless, friendlier editor); vim is
+# still available under its own name.
+vi()  { _fzf_or_passthrough micro "$@"; }
 bat() { _fzf_or_passthrough bat "$@"; }
 
 # batp: plain bat (no line numbers/grid/header) so selected text copies cleanly.

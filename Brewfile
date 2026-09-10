@@ -15,6 +15,8 @@ brew "fzf"
 brew "gnu-sed"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
+# Modern and intuitive terminal-based text editor
+brew "micro"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Open source programming language to build simple/reliable/efficient software

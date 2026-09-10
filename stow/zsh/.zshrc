@@ -46,3 +46,28 @@ export PATH="/opt/homebrew/bin:$PATH"
 # `cd` a superset (normal paths work as always; a bare keyword jumps to the
 # best remembered match). `cdi` is the interactive picker.
 command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init zsh --cmd cd)"
+
+# fzf: fuzzy finder. `fzf --zsh` sets up the key bindings and completion:
+#   Ctrl-R  fuzzy-search command history (replaces the default reverse search)
+#   Ctrl-T  insert a fuzzy-picked file path onto the command line
+#   Alt-C   cd into a fuzzy-picked subdirectory
+# To keep the default Ctrl-R instead, add: bindkey '^R' history-incremental-search-backward
+if command -v fzf >/dev/null 2>&1; then
+	# Back fzf with fd: fast, and respects .gitignore.
+	export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
+	export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+	eval "$(fzf --zsh)"
+fi
+
+# Run an editor on an fzf-picked file when called with no arguments; pass
+# arguments straight through otherwise. So bare `vi` opens the picker, while
+# `vi file.txt` behaves exactly as normal.
+vi() {
+	if [ $# -eq 0 ]; then
+		local file
+		file=$(fzf) || return
+		command vim "$file"
+	else
+		command vim "$@"
+	fi
+}

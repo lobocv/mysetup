@@ -1,4 +1,5 @@
-source ~/lobocv/mysetup/load_aliases.sh
+# Resolve this file through its Stow symlink to find the checkout anywhere.
+source "${${(%):-%x}:A:h:h:h}/load_aliases.sh"
 
 export PATH="$HOME/go/bin:$PATH"
 
@@ -8,14 +9,10 @@ autoload -Uz compinit
 compinit
 # End of Docker CLI completions
 
-alias cc="claude"
 # macOS ships python3 but no bare `python`; alias it so `python` just works.
 alias python="python3"
 # Use bat (syntax-highlighted, paged) in place of less for viewing files.
 alias less="bat"
-alias gm="git checkout master && git pull"
-alias gmm="git fetch origin && git merge origin/master"
-alias snowball="cd /Users/calvinlobo/snowball/"
 
 # Load secrets from Infisical into the environment, if it is set up.
 # See RESTORE.md for how to log in and add secrets. The guards keep the

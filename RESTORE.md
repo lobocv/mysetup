@@ -5,8 +5,8 @@ The steps below rebuild this Mac from scratch. Run them in order.
 ## 1. Clone this repo
 
 ```sh
-mkdir -p ~/lobocv
-git clone git@github.com:lobocv/mysetup.git ~/lobocv/mysetup
+mkdir -p ~/projects
+git clone git@github.com:lobocv/mysetup.git ~/projects/mysetup
 ```
 
 (If SSH is not set up yet, clone over HTTPS for now and fix the remote later.)
@@ -14,12 +14,17 @@ git clone git@github.com:lobocv/mysetup.git ~/lobocv/mysetup
 ## 2. Run the bootstrap
 
 ```sh
-~/lobocv/mysetup/bootstrap.sh
+cd ~/projects/mysetup
+./bootstrap.sh
 ```
 
 This installs Homebrew, reinstalls every app in the `Brewfile`, and symlinks
 all the tracked config files into place. See the README for what each tool
 does.
+
+Any checkout location works. If you move it later or only need to fix broken
+symlinks, run `python3 apply.py` from the checkout. Existing conflicting configs
+are backed up under `~/.mysetup-backup-*`; app runtime state is preserved.
 
 ## 3. Restore secrets and credentials
 

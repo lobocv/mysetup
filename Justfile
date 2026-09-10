@@ -4,11 +4,9 @@
 default:
 	@just --list
 
-# Symlink all dotfiles into $HOME (safe to re-run; --restow refreshes links).
+# Repair links and apply dotfiles, backing up conflicting files.
 apply:
-	for pkg in stow/*/; do \
-		stow --dir=stow --target="$HOME" --restow "$(basename "$pkg")"; \
-	done
+	python3 apply.py
 
 # Re-dump the Brewfile to capture newly installed / removed apps.
 dump:

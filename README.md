@@ -8,12 +8,21 @@ machine.
 ## Rebuilding a machine
 
 ```sh
-git clone git@github.com:lobocv/mysetup.git ~/lobocv/mysetup
-~/lobocv/mysetup/bootstrap.sh
+git clone git@github.com:lobocv/mysetup.git ~/projects/mysetup
+cd ~/projects/mysetup
+./bootstrap.sh
 ```
 
 Then follow [RESTORE.md](RESTORE.md) for the credential steps (logins, SSH,
 Infisical) that can't live in a repo.
+
+You can clone anywhere. After moving the checkout, run `python3 apply.py`
+from its new location (or `just apply`) to repair links without reinstalling
+apps. Conflicting files and links are saved under `~/.mysetup-backup-*`.
+Existing app directories and their runtime state are preserved; Stow links
+individual config files so app data stays outside the checkout. A saved
+symlink points to its original location, so keep that location until you have
+reviewed any old settings you want to retain.
 
 ## How it works
 
@@ -23,7 +32,7 @@ what each one is for.
 ### Homebrew + the Brewfile (installing apps)
 
 [Homebrew](https://brew.sh) is the package manager for macOS. It installs
-command-line tools (`git`, `just`, `go`) and desktop apps (Warp, Cursor) alike.
+command-line tools (`git`, `just`) and desktop apps (Warp, Cursor) alike.
 
 A `Brewfile` is just a list of everything Homebrew should install, written down
 in one file. `brew bundle dump` writes your currently-installed apps into it,
@@ -32,7 +41,7 @@ is the modern version of a "here's every app I use" checklist, except it runs
 itself.
 
 The `Brewfile` captures brew formulae, casks (GUI apps), VS Code extensions,
-and even Go / npm / uv globals.
+and can also capture npm / uv globals. Go tool installs have been removed.
 
 ### GNU Stow (placing config files)
 
@@ -93,7 +102,7 @@ just save "add zed config"      # ...with a custom commit message
 Other commands ([just](https://github.com/casey/just) is a simple command
 runner; run `just` to list them):
 
-- `just apply` — (re)create all the symlinks
+- `just apply` — repair and (re)create all the symlinks, backing up conflicts
 - `just dump` — refresh the `Brewfile` only
 
 Secrets need no syncing here; they already live in Infisical.

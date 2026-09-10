@@ -2,8 +2,8 @@
 #
 # Bootstrap a fresh macOS machine from this repo.
 #
-# Run this once, right after cloning the repo to ~/lobocv/mysetup:
-#     ~/lobocv/mysetup/bootstrap.sh
+# Run this once from any checkout location:
+#     ./bootstrap.sh
 #
 # It installs Homebrew, reinstalls every app in the Brewfile, then symlinks
 # all the tracked config files into place with stow. Secrets are NOT handled
@@ -12,7 +12,6 @@
 set -euo pipefail
 
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-STOW_DIR="$REPO_DIR/stow"
 
 echo "==> Bootstrapping from $REPO_DIR"
 
@@ -30,11 +29,7 @@ brew bundle --file="$REPO_DIR/Brewfile"
 # 3. Symlink all config files into $HOME with stow.
 #    Each folder under stow/ is a "package" whose contents mirror $HOME.
 echo "==> Symlinking dotfiles with stow"
-for pkg in "$STOW_DIR"/*/; do
-	pkg_name="$(basename "$pkg")"
-	echo "    stow $pkg_name"
-	stow --dir="$STOW_DIR" --target="$HOME" --restow "$pkg_name"
-done
+python3 "$REPO_DIR/apply.py"
 
 echo ""
 echo "==> Done. Next steps (see RESTORE.md):"

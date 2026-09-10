@@ -1,15 +1,14 @@
-local ALIAS_DIR=$(dirname $0)/aliases
+local ALIAS_DIR="${${(%):-%x}:A:h}/aliases"
 
 function load_aliases() {
 	local f
 	
-	for f in $(ls $ALIAS_DIR/*.sh); do
-		if [[ $(basename $f)  == _* ]]; then
+	for f in "$ALIAS_DIR"/*.sh; do
+		if [[ ${f:t} == _* ]]; then
 			continue
 		fi
-	        source $f
+	        source "$f"
 	done
 }
 
 load_aliases
-

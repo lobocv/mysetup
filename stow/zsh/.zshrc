@@ -13,6 +13,9 @@ alias cc="claude"
 alias python="python3"
 # Use bat (syntax-highlighted, paged) in place of less for viewing files.
 alias less="bat"
+# Plain bat: syntax highlighting but no line numbers/grid/header, so selected
+# text copies cleanly. Use `batp` when you want to copy lines out.
+alias batp="bat --style=plain"
 alias gm="git checkout master && git pull"
 alias gmm="git fetch origin && git merge origin/master"
 alias snowball="cd /Users/calvinlobo/snowball/"

@@ -157,17 +157,6 @@ function dockerip() {
 }
 
 
-# Get the host virtual network interface of the network interface of a running docker container.
-# $1: Container name to grep for
-# $2: container network interface (Default: eth0)
-function dockeriface() {
-	findcontainer "$1"
-	iface=${2:-eth0}
-	ifindex=$(docker exec -it $container sh -c "cat /sys/class/net/${iface}/iflink" | tr -d '\r')
-	iface_path_host=$(grep -R "${ifindex}" /sys/class/net/*/ifindex)
-	echo "$(basename $(dirname $iface_path_host))"
-}
-
 # List the IPs of all running docker container.
 # $1: Container name to grep for
 function dockeriplist() {
@@ -275,6 +264,6 @@ function dockerhealth() {
         *)
                 ;;
         esac
-        docker ps $ALL --format "{{.Names}}, {{.Status}}" | tabulate -s "," | cGreen "\s.*\(healthy\)" | cLightRed "\s.*\(unhealthy\)" | cPink "\s.*Exited .*" 
+        docker ps $ALL --format "{{.Names}}, {{.Status}}" | column -t -s ","
 }
 

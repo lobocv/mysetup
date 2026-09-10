@@ -1,0 +1,9 @@
+[user]
+	name = lobocv
+	email = calvinlobo@gmail.com
+[core]
+	symlinks = true
+	autocrlf = input
+
+[url "ssh://git@github.com/"]
+      insteadOf = https://github.com/

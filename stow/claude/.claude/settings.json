@@ -1,0 +1,75 @@
+{
+  "permissions": {
+    "defaultMode": "default"
+  },
+  "model": "opus",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/gsd-check-update.js\""
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "afplay /System/Library/Sounds/Glass.aiff"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat >/dev/null; [ -n \"$CURSOR_VERSION\" ] && exit 0; curl -sf --max-time 0.2 -X POST --unix-socket '/Users/calvinlobo/Library/Application Support/Roam/roam-local-api-beta.sock' \"http://localhost/api/v1/activity/claude-code/stop?pid=$PPID\" >/dev/null 2>&1 || true",
+            "timeout": 3
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat >/dev/null; [ -n \"$CURSOR_VERSION\" ] && exit 0; curl -sf --max-time 0.2 -X POST --unix-socket '/Users/calvinlobo/Library/Application Support/Roam/roam-local-api-beta.sock' \"http://localhost/api/v1/activity/claude-code/post-tool-use?pid=$PPID\" >/dev/null 2>&1 || true",
+            "timeout": 3
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "node \"$HOME/.claude/hooks/statusline.js\""
+  },
+  "enabledPlugins": {
+    "gopls-lsp@claude-plugins-official": true,
+    "example-skills@anthropic-agent-skills": true,
+    "superpowers@claude-plugins-official": true,
+    "figma@claude-plugins-official": true,
+    "slack@claude-plugins-official": true,
+    "code-quality@agentic-instructions": true
+  },
+  "extraKnownMarketplaces": {
+    "agentic-instructions": {
+      "source": {
+        "source": "directory",
+        "path": "/Users/calvinlobo/lobocv/agentic-instructions"
+      }
+    }
+  },
+  "alwaysThinkingEnabled": true,
+  "effortLevel": "high",
+  "tui": "default",
+  "skipWorkflowUsageWarning": true,
+  "preferredNotifChannel": "terminal_bell",
+  "agentPushNotifEnabled": true
+}

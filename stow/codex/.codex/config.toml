@@ -1,0 +1,205 @@
+model = "gpt-5.6-sol"
+notify = [
+    "/Users/calvinlobo/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient",
+    "turn-ended",
+]
+model_reasoning_effort = "high"
+approvals_reviewer = "auto_review"
+
+[projects."/Users/calvinlobo/snowball"]
+trust_level = "trusted"
+
+[projects."/Users/calvinlobo/experiments/tether"]
+trust_level = "trusted"
+
+[projects."/Users/calvinlobo/experiments/tether3"]
+trust_level = "trusted"
+
+[projects."/Users/calvinlobo/experiments/tether2"]
+trust_level = "trusted"
+
+[projects."/Users/calvinlobo/lobocv/agentic-instructions"]
+trust_level = "trusted"
+
+[projects."/Users/calvinlobo/Documents/Codex/2026-09-07/what"]
+trust_level = "trusted"
+
+[marketplaces.openai-bundled]
+source_type = "local"
+source = "/Users/calvinlobo/.codex/.tmp/bundled-marketplaces/openai-bundled"
+
+[marketplaces.openai-primary-runtime]
+source_type = "local"
+source = "/Users/calvinlobo/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+
+[marketplaces.agentic-instructions]
+source_type = "local"
+source = "/Users/calvinlobo/lobocv/agentic-instructions"
+
+[marketplaces.anthropic-agent-skills]
+source_type = "git"
+source = "https://github.com/anthropics/skills.git"
+
+[marketplaces.claude-plugins-official]
+source_type = "git"
+source = "https://github.com/anthropics/claude-plugins-official.git"
+
+[marketplaces.codex-hud]
+source_type = "git"
+source = "https://github.com/ir272/codex-hud.git"
+
+[plugins."codex-app-tools@openai-bundled"]
+enabled = true
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
+[plugins."visualize@openai-bundled"]
+enabled = true
+
+[plugins."sites@openai-bundled"]
+enabled = true
+
+[plugins."documents@openai-primary-runtime"]
+enabled = true
+
+[plugins."pdf@openai-primary-runtime"]
+enabled = true
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = true
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = true
+
+[plugins."template-creator@openai-primary-runtime"]
+enabled = true
+
+[plugins."code-quality@agentic-instructions"]
+enabled = true
+
+[plugins."example-skills@anthropic-agent-skills"]
+enabled = true
+
+[plugins."gopls-lsp@claude-plugins-official"]
+enabled = true
+
+[plugins."superpowers@claude-plugins-official"]
+enabled = true
+
+[plugins."figma@claude-plugins-official"]
+enabled = true
+
+[plugins."slack@claude-plugins-official"]
+enabled = true
+
+[plugins."codex-hud@codex-hud"]
+enabled = true
+
+[features]
+js_repl = false
+prevent_idle_sleep = true
+
+[mcp_servers.node_repl]
+command = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+startup_timeout_sec = 120.0
+
+[mcp_servers.node_repl.env]
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+BROWSER_USE_CODEX_APP_VERSION = "26.818.41705"
+BROWSER_USE_TINYSKY_ENABLED = "0"
+CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
+CODEX_HOME = "/Users/calvinlobo/.codex"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
+NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = "Control desktop apps on macOS through Computer Use."
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
+NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/calvinlobo/.codex:/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/calvinlobo/.codex/plugins/cache/openai-bundled/browser/26.818.41705/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
+
+[mcp_servers.computer-use]
+command = "./Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient"
+args = ["mcp"]
+cwd = "."
+enabled = false
+
+[mcp_servers.postgres]
+command = "npx"
+args = [
+    "-y",
+    "@modelcontextprotocol/server-postgres",
+    "postgresql://postgres:postgres@127.0.0.1:5432/postgres",
+]
+
+[mcp_servers.Linear]
+url = "https://mcp.linear.app/sse"
+
+[mcp_servers.Notion]
+url = "https://mcp.notion.com/mcp"
+
+[mcp_servers.trellis]
+url = "http://127.0.0.1:5123/mcp"
+
+[mcp_servers.tether]
+command = "./devops/local/scripts/experimental/tether/src/bin/tether"
+args = [
+    "serve",
+    "--dir=/Users/calvinlobo/snowball-2/services/equity_backend",
+]
+
+[desktop]
+external-agent-import-sync-enabled = true
+conversationDetailMode = "STEPS_COMMANDS"
+ambient-suggestions-enabled = true
+followUpQueueMode = "queue"
+
+[hooks.state]
+
+[hooks.state."/Users/calvinlobo/.codex/hooks.json:stop:0:0"]
+trusted_hash = "sha256:e2305cac5ae49c4d0dc27095154969052b75c53e3d266d5b0acf4f1d4124468c"
+
+[hooks.state."code-quality@agentic-instructions:hooks/hooks.json:pre_tool_use:0:0"]
+trusted_hash = "sha256:10f3625fbf56824c46d51967a211e98cbd7e95bd837cdee072c091ed0184a78a"
+
+[hooks.state."/Users/calvinlobo/.codex/hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:735493b213458cc9e52a14d75eb35895a8c953133eaab00ddd9cecdf42f2dc0b"
+
+[hooks.state."/Users/calvinlobo/.codex/hooks.json:session_start:0:0"]
+trusted_hash = "sha256:9e5181e10c3a04424a572c53304528a148dfcf6ad2e3aa8215471685a7bddaab"
+
+[hooks.state."/Users/calvinlobo/.codex/hooks.json:stop:1:0"]
+trusted_hash = "sha256:d88254cef8f9913c12aea8f32b12f66f0628a30fbf3c1e9a09d1b7dfe181d40f"
+
+[hooks.state."/Users/calvinlobo/experiments/tether3/.codex/hooks.json:pre_tool_use:0:0"]
+trusted_hash = "sha256:29f2c24ce14835f0ef3110c2cfef9edb16671cede0385763096051cea430f16c"
+
+[tui]
+status_line = [
+    "model-with-reasoning",
+    "context-used",
+    "five-hour-limit",
+    "weekly-limit",
+    "permissions",
+    "approval-mode",
+    "git-branch",
+    "branch-changes",
+    "current-dir",
+    "task-progress",
+]
+status_line_use_colors = true
+terminal_title = [
+    "spinner",
+    "project",
+    "git-branch",
+    "model",
+    "task-progress",
+]
+
+[tui.model_availability_nux]
+gpt-6-astra = 4
+
+[notice.model_migrations]
+"gpt-5.4-mini" = "gpt-5.6-luna"

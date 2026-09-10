@@ -45,10 +45,18 @@ brew "infisical/get-cli/infisical", trusted: true
 cask "claude-code"
 # OpenAI's coding agent that runs in your terminal
 cask "codex"
+# Universal database tool and SQL client
+cask "dbeaver-community"
+# App to build and share containerised applications and microservices
+cask "docker"
 # Clipboard manager
 cask "maccy"
+# Team communication and collaboration software
+cask "slack"
 # Rust-based terminal
 cask "warp"
+# Voice dictation app
+cask "wispr-flow"
 # Multiplayer code editor
 cask "zed"
 go "github.com/golangci/golangci-lint/v2/cmd/golangci-lint"

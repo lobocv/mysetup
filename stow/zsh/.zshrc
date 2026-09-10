@@ -11,6 +11,8 @@ compinit
 alias cc="claude"
 # macOS ships python3 but no bare `python`; alias it so `python` just works.
 alias python="python3"
+# Use bat (syntax-highlighted, paged) in place of less for viewing files.
+alias less="bat"
 alias gm="git checkout master && git pull"
 alias gmm="git fetch origin && git merge origin/master"
 alias snowball="cd /Users/calvinlobo/snowball/"
